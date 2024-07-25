@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container1{
+            width: 30%;
+            border: 2px solid black;
+            height: 400px;
+        }
+    </style>
+</head>
+<body>
+    <input type="text" height="200px" width="200px" id="0">
+    <h1>CSS PROPERTIES</h1>
+    <div class="container">
+        <div class="row">
+            <input type="text" placeholder="color" id="1">
+            <input type="text" placeholder="background color" id="2">
+            <input type="number" placeholder="fontsize" id="3">
+            <div class="container1" id="4"> </div>
+        </div>
+    </div>
+    <script>
+        let sizes=16;
+        document.getElementById("0").oninput=function(){
+            let texttt =document.getElementById("0").value;
+            console.log(texttt);
+            document.getElementById("4").textContent=texttt;
+        }
+        document.getElementById("3").oninput=function(){
+            let size =document.getElementById("3").value;
+            sizes=size;
+            document.getElementById("4").style.fontSize=sizes+"px"
+        }
+        document.getElementById("2").oninput=function(){
+            let color1 =document.getElementById("2").value;
+            document.getElementById("4").style.backgroundColor=color1;
+        }
+        document.getElementById("1").oninput=function(){
+            let fontcolor =document.getElementById("1").value;
+            document.getElementById("4").style.color=fontcolor;
+        }
+
+    </script>
+</body>
+</html>
