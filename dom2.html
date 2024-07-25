@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container {}
+
+        .inseder {
+            display: inline-block;
+            display: flex;
+        }
+
+        .box {
+            height: 200px;
+            width: 200px;
+            border: 1px solid black;
+        }
+    </style>
+</head>
+
+<body>
+
+    <input type="text" name="" id="0" placeholder="enter your color">
+    <input type="text" name="" id="00" placeholder="enter your div no">
+    <button id="btn">submit</button>
+    <div class="inseder">
+
+        <div class="box" id="1"></div>
+        <div class="box" id="2"></div>
+        <div class="box" id="3"></div>
+        <div class="box" id="4"></div>
+    </div>
+    <div class="inseder">
+        <div class="box" id="5"></div>
+        <div class="box" id="6"></div>
+        <div class="box" id="7"></div>
+        <div class="box" id="8"></div>
+    </div>
+    <script>
+
+        document.getElementById("btn").onclick = function () {
+            let color = document.getElementById("0").value;
+            console.log(color);
+            let div = document.getElementById("00").value;
+            console.log(div);
+            document.getElementById(`${div}`).style.backgroundColor = color;
+        }
+    </script>
+
+
+</body>
+
+</html>
