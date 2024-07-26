@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        *{
+            margin: 0px;
+            padding: 0px;
+            box-sizing: border-box;
+            font-family: sans-serif;
+        }
+
+        #container{
+
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .box{
+
+            width: 300px;
+            /* border: 2px solid black; */
+            box-shadow: 0px 0px 10px rgb(156, 155, 155);
+            margin: 5px;
+            flex-grow: 1;
+            padding: 10px;
+            text-align: center;
+        }
+
+        img{
+            width: 100%;
+        }
+
+        button{
+
+            padding: 15px;
+            width: 45%;
+            margin: 10px 5px;
+            background-color: black;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+        .search{
+
+            text-align: center;
+            position: relative;
+            margin: 40px 0px;
+        }
+
+        input{
+
+            width: 40%;
+            padding: 14px;
+            border-radius: 5px 0px 0px 5px;
+        }
+
+        .btn{
+
+            width: 200px;
+            margin: 0px;
+            position: absolute;
+            border-radius: 0px 15px 15px 0px;
+        }
+
+        i{
+            margin-left: 300px;
+    font-size: 25px;
+}
+    
+    </style>
+</head>
+<body>
+    <div class="search">
+        <input type="text" placeholder="Search Your Products">
+        <button class="btn">Search</button>
+
+        <i class="fa-solid fa-cart-shopping"></i>
+    </div>
+    <div id="container"></div>
+    <script>
+        
+    //    let prom = fetch('https://dummyjson.com/products');
+    //    prom.then((response)=>{
+    //       response.json().then((result)=>{
+    //             console.log(result.products)
+    //       })
+    //    })
+
+     async function FetchData(){
+           
+        try{
+          let data = await fetch('https://dummyjson.com/products');
+          let json_data = await data.json();
+
+          let filter_product = json_data.products.filter((item)=>{
+
+             return item.price<100;
+          })
+
+          console.log(filter_product)
+          console.log(json_data.products)
+
+          for(let i of filter_product){
+            
+            let div = document.createElement('div');
+            let image = document.createElement('img');
+            let title = document.createElement('h3');
+            let price = document.createElement('h4');
+            let description = document.createElement('p');
+            let add_cart = document.createElement("button");
+            let buy_now = document.createElement("button");
+            add_cart.innerHTML = "Add To Cart";
+            buy_now.innerHTML = "Buy Now";
+            title.innerHTML = i.title;
+            price.innerHTML = i.price;
+            description.innerHTML = i.description.slice(0,80);
+            image.src = i.thumbnail;
+            div.className = "box"
+            div.append(image);
+            div.append(title);
+            div.append(price);
+            div.append(description);
+            div.append(add_cart)
+            div.append(buy_now)
+
+            document.querySelector("#container").append(div)
+          }
+          
+        }
+        catch{
+            console.log("data fetch nhi hoga")
+        }
+     }
+
+     FetchData()
+
+    </script>
+    
+</body>
+</html>
